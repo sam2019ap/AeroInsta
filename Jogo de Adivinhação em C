@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int numeroSecreto, tentativa, numTentativas = 0;
+    int LIMITE_TENTATIVAS = 10;
+
+    // Inicializa o gerador de números aleatórios
+    srand(time(NULL));
+
+    // Gera um número aleatório entre 1 e 100
+    numeroSecreto = rand() % 100 + 1;
+
+    printf("Bem-vindo ao Jogo de Adivinhação!\n");
+    printf("Tente adivinhar o número secreto entre 1 e 100.\n");
+
+    while (numTentativas < LIMITE_TENTATIVAS) {
+        printf("Tentativa %d: ", numTentativas + 1);
+        scanf("%d", &tentativa);
+        numTentativas++;
+
+        if (tentativa == numeroSecreto) {
+            printf("Parabéns! Você acertou o número secreto em %d tentativas.\n", numTentativas);
+            return 0;
+        } else if (tentativa < numeroSecreto) {
+            printf("O número secreto é maior que %d.\n", tentativa);
+        } else {
+            printf("O número secreto é menor que %d.\n", tentativa);
+        }
+    }
+
+    printf("Você não conseguiu adivinhar o número secreto em %d tentativas.\n", LIMITE_TENTATIVAS);
+    printf("O número secreto era %d.\n", numeroSecreto);
+
+    return 0;
+}
